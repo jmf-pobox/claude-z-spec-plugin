@@ -40,7 +40,7 @@ mkdir -p ~/.claude/plugins/local-plugins/.claude-plugin
 mkdir -p ~/.claude/plugins/local-plugins/plugins
 
 # Clone this repo
-git clone https://github.com/YOUR_USERNAME/claude-z-spec-plugin.git \
+git clone https://github.com/jmf-pobox/claude-z-spec-plugin.git \
     ~/.claude/plugins/local-plugins/plugins/z-spec
 
 # Create marketplace.json
@@ -69,7 +69,7 @@ claude plugin install z-spec@local
 
 ```bash
 # Clone directly to plugins directory
-git clone https://github.com/YOUR_USERNAME/claude-z-spec-plugin.git \
+git clone https://github.com/jmf-pobox/claude-z-spec-plugin.git \
     ~/.claude/plugins/z-spec
 ```
 

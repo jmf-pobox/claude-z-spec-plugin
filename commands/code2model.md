@@ -95,6 +95,7 @@ Create a LaTeX file with this structure:
 
 \documentclass[a4paper,10pt,fleqn]{article}
 \usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage{fuzz}
 
 \begin{document}
@@ -102,7 +103,16 @@ Create a LaTeX file with this structure:
 \title{<System Name>: A Z Specification}
 \author{Formal Model of <System Description>}
 \date{<Month Year>}
+\hypersetup{
+  pdftitle={<System Name>: A Z Specification},
+  pdfauthor={<Author or Organization>},
+  pdfsubject={Z Specification},
+  pdfcreator={fuzz/probcli}
+}
 \maketitle
+
+\tableofcontents
+\newpage
 
 \section{Introduction}
 % Brief description of what the system does
@@ -174,6 +184,18 @@ attribute2' = attribute2
 ### 5. Write the File
 
 Save to `docs/<system_name>.tex` where `<system_name>` is derived from the focus hint or codebase name.
+
+### 5.1 Format with tex-fmt (if available)
+
+If tex-fmt is installed, format the LaTeX for consistent style:
+
+```bash
+if command -v tex-fmt >/dev/null 2>&1; then
+    tex-fmt docs/<system_name>.tex
+fi
+```
+
+This ensures consistent indentation and line breaks. See `reference/latex-style.md` for formatting guidelines.
 
 ### 6. Type-Check with Fuzz
 
@@ -412,15 +434,21 @@ sessions' = \{ sessionId? \} \ndres sessions
   - After: `users : USERNAME \pinj UserData`
 - This automatically enforces uniqueness via the injection constraint
 
-### 4. Regenerate PDF
+### 4. Format and Regenerate PDF
 
-After any changes to the `.tex` file, regenerate the PDF:
+After any changes to the `.tex` file:
 
+1. **Format with tex-fmt** (if available):
+```bash
+if command -v tex-fmt >/dev/null 2>&1; then
+    tex-fmt docs/<file>.tex
+fi
+```
+
+2. **Regenerate PDF** (run twice for TOC/references):
 ```bash
 cd docs && pdflatex <file>.tex && pdflatex <file>.tex
 ```
-
-Run twice to ensure TOC and references are updated.
 
 ## Reference
 
@@ -428,3 +456,4 @@ Consult the reference files for:
 - Z notation syntax: `reference/z-notation.md`
 - Common schema patterns: `reference/schema-patterns.md`
 - probcli options: `reference/probcli-guide.md`
+- LaTeX formatting: `reference/latex-style.md`

@@ -111,6 +111,14 @@ interval \in 1 \upto 30
 
 Extracts: `attempts <= 10000`, `interval in 1..30`
 
+**Category Priority**: When a constraint could fit multiple categories, use this priority:
+1. **Preconditions** (in `\where` clause of operation with inputs)
+2. **Effects** (assignments to primed variables)
+3. **Bounds** (explicit numeric limits like max/min values)
+4. **Invariants** (remaining state constraints)
+
+For example, `level <= 26` in a State schema is an **invariant** (domain constraint), while `interval <= maxInterval` in an axdef is a **bound** (system limit).
+
 ### 4. Build Constraint List
 
 For each extracted constraint, record:
@@ -165,7 +173,7 @@ Assign confidence based on match quality:
 | Schema invariants | 8 | 10 | 80% |
 | Operation preconditions | 4 | 4 | 100% |
 | Operation effects | 3 | 4 | 75% |
-| Upper/lower bounds | 0 | 0 | N/A |
+| Upper/lower bounds | 0 | 1 | 0% |
 
 ### Detailed Coverage
 
@@ -198,14 +206,14 @@ The following constraints have no detected test coverage:
   "testDirectory": "ExampleTests/",
   "summary": {
     "covered": 15,
-    "total": 18,
-    "percentage": 83
+    "total": 19,
+    "percentage": 79
   },
   "byCategory": {
     "invariant": { "covered": 8, "total": 10 },
     "precondition": { "covered": 4, "total": 4 },
     "effect": { "covered": 3, "total": 4 },
-    "bound": { "covered": 0, "total": 0 }
+    "bound": { "covered": 0, "total": 1 }
   },
   "constraints": [
     {

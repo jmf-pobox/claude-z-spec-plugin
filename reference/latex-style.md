@@ -11,11 +11,11 @@ Always include these packages in order:
 ```latex
 \documentclass[a4paper,10pt,fleqn]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage{fuzz}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 ```
 
-The `hyperref` package must come before `fuzz` to avoid compatibility issues.
+Load `hyperref` after `fuzz` following standard LaTeX convention (hyperref should be one of the last packages loaded).
 
 ### Document Metadata
 

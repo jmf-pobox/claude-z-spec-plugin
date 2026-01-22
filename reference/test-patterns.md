@@ -164,7 +164,8 @@ describe('IntervalCalculator', () => {
 |---------|-------------|
 | `test_*.py` | pytest standard (prefix) |
 | `*_test.py` | pytest alternative (suffix) |
-| `conftest.py` | Fixtures file |
+
+**Note**: `conftest.py` contains fixtures and configuration, not test cases. Don't count it as a test file.
 
 ### Assertion Patterns
 

@@ -164,7 +164,7 @@ Assign confidence based on match quality:
 
 **Specification**: docs/example.tex
 **Test Directory**: ExampleTests/
-**Coverage**: 15/18 constraints (83%)
+**Coverage**: 15/19 constraints (79%)
 
 ### Summary by Category
 

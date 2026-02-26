@@ -266,7 +266,7 @@ For each operation, produce:
     {
       "name": "OperationName",
       "kind": "delta",
-      "inputs": [{"name": "input1", "type": "nat", "constraints": ["input1 >= 0"]}],
+      "inputs": [{"name": "input1", "type": "nat", "constraints": ["input1 <= 150"]}],
       "stateVars": ["var1", "var2"],
       "branches": [
         {"id": 1, "description": "Success case", "condition": "amount <= balance"}
@@ -286,10 +286,10 @@ For each operation, produce:
           "id": 4,
           "class": "rejected",
           "status": "rejected",
-          "inputs": {"input1": -1},
+          "inputs": {"input1": 200},
           "preState": {"var1": 100},
           "postState": null,
-          "notes": "Precondition: input1 >= 0 fails"
+          "notes": "Precondition: input1 <= 150 fails"
         }
       ],
       "summary": {

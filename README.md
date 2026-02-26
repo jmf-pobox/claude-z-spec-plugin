@@ -9,11 +9,19 @@
 
 ## Quick Start
 
+First, add the Punt Labs marketplace (one-time):
+
+```bash
+claude plugin marketplace add punt-labs/claude-plugins
+```
+
+Then install the plugin:
+
 ```bash
 claude plugin install z-spec
 ```
 
-Then inside Claude Code:
+Inside Claude Code:
 
 ```
 /z setup all                              # Install fuzz and probcli

@@ -205,6 +205,28 @@ correct' = correct
 \end{schema}
 ```
 
+## Test Case Derivation (`/z partition`)
+
+`/z partition` applies the [Test Template Framework](https://doi.org/10.1007/3-540-48257-1_11) (TTF) to derive conformance test cases directly from the mathematics of your Z operations. Rather than writing tests by intuition, the spec's structure determines what must be tested.
+
+The command applies three tactics:
+
+1. **DNF decomposition** — operations with disjunctions (`\lor`) or conditionals encode multiple behaviors. Each disjunct becomes a separate behavioral branch requiring independent testing.
+2. **Standard partitions** — type-based equivalence classes for each input and state variable (e.g., bounded `\nat` yields endpoint and midpoint values; free types yield every constructor).
+3. **Boundary analysis** — values at and around each constraint edge, catching off-by-one errors in the implementation.
+
+For the `AdvanceLevel` example above, this produces:
+
+| # | Class | Inputs | Pre-state | Expected |
+|---|-------|--------|-----------|----------|
+| 1 | Happy path | accuracy=95 | level=5 | level'=6 |
+| 2 | Boundary: min accuracy | accuracy=90 | level=5 | level'=6 |
+| 3 | Boundary: max level | accuracy=95 | level=25 | level'=26 |
+| 4 | Rejected: low accuracy | accuracy=89 | level=5 | no change |
+| 5 | Rejected: at max | accuracy=95 | level=26 | no change |
+
+Add `--code swift` (or python, typescript, kotlin) to generate executable test cases from the partition table.
+
 ## License
 
 MIT License — see [LICENSE](LICENSE)
